@@ -2,9 +2,6 @@
 name: Create and publish a Docker image
 
 on: workflow_dispatch
-permissions:
-  contents: write
-  packages: write
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -12,9 +9,9 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
+    permissions: write-all
+      # contents: write
+      # packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
