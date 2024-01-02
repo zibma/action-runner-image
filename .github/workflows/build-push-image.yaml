@@ -3,7 +3,7 @@ name: Create and publish a Docker image
 
 on: workflow_dispatch
 permissions:
-  contents: read
+  contents: write
   packages: write
 env:
   REGISTRY: ghcr.io
@@ -13,7 +13,7 @@ jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
     steps:
       - name: Checkout repository
