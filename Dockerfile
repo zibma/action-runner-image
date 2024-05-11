@@ -1,4 +1,4 @@
-FROM ghcr.io/actions/actions-runner:2.314.1
+FROM ghcr.io/actions/actions-runner:2.316.1
 
 # Update - START
 RUN sudo apt update -y
