@@ -28,8 +28,7 @@ RUN sudo apt install unzip -y
 RUN sudo apt install python3 -y
 RUN sudo apt install python-is-python3 -y
 RUN sudo apt-get -y install python3-pip
-# Fix: Explicitly create symlink for 'python' to point to python3
-RUN rm -f /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 # Install Python - END
 
 # Installing Docker Engine - START
