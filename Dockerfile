@@ -28,6 +28,8 @@ RUN sudo apt install unzip -y
 RUN sudo apt install python3 -y
 RUN sudo apt install python-is-python3 -y
 RUN sudo apt-get -y install python3-pip
+# Fix: Explicitly create symlink for 'python' to point to python3
+RUN rm -f /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
 # Install Python - END
 
 # Installing Docker Engine - START
@@ -41,22 +43,6 @@ RUN echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN sudo apt-get update -y
 # Installing Docker Engine - END
-
-# # Installing Podman - START
-# RUN sudo apt-get -y install podman
-# # Installing Podman - END
-
-# # Installing Buildah - START
-# RUN sudo apt-get -y install buildah
-# # Installing Buildah - END
-
-# # Installing Kubectl - START
-# RUN curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
-# RUN echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-# RUN sudo apt-get update -y
-# RUN sudo apt install kubectl -y
-# # Installing Kubectl - END
-
 
 # Uncomment the following line for debugging this image
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
