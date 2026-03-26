@@ -15,7 +15,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: "Get Last commit short SHA"
         id: "commit_short_sha"
         run: |
