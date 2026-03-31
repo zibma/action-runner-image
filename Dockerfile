@@ -1,4 +1,4 @@
-FROM ghcr.io/actions/actions-runner:2.332.0
+FROM ghcr.io/actions/actions-runner:2.333.1
 
 # Update - START
 RUN sudo apt update -y
@@ -63,11 +63,11 @@ RUN sudo mkdir -p /docker-image-cache && \
       docker-archive:/docker-image-cache/nginx-stable-alpine.tar:nginx:stable-alpine
 # Pre-cache .NET base images as tarballs - END
 
-# Custom entrypoint for pre-loading cached images - START
-COPY entrypoint.sh /docker-init.sh
-RUN sudo chmod +x /docker-init.sh
-ENTRYPOINT ["/docker-init.sh"]
-# Custom entrypoint for pre-loading cached images - END
+# Pre-cache images hook - START
+COPY docker-load-cache.sh /docker-load-cache.sh
+RUN sudo chmod +x /docker-load-cache.sh
+ENV ACTIONS_RUNNER_HOOK_JOB_STARTED=/docker-load-cache.sh
+# Pre-cache images hook - END
 
 # Uncomment the following line for debugging this image
 # ENTRYPOINT ["tail", "-f", "/dev/null"]
